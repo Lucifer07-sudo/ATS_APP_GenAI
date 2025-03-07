@@ -8,14 +8,16 @@ import google.generativeai as genai
 import io
 import base64
 
-
+## Get Gemini API key
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
+## define function to get Gemini response
 def get_gemini_response(input, pdf_content, prompt):
     model = genai.GenerativeModel('gemini-1.5-flash')
     response = model.generate_content([input, pdf_content[0], prompt])
     return response
 
+## function to extract content from pdf
 def input_pdf_setup(uploaded_file):
     if uploaded_file is not None:
     #read pdf as image
@@ -58,12 +60,13 @@ submit1 = st.button("Tell Me About the Resume")
 submit2 = st.button("Parse resume")
 submit3 = st.button("Percentage match")
 
+## prompt for submit button 1
 input_prompt1 = """You are an experienced HR with experience in technologies like Data science, Fullstack web development,
 Big Data engineering, DevOps, Data Analyst, Generative AI. Your task is to review the provided resume against the job description for these 
 technologies.Please share your professional evaluation on whether the candidate's profile aligns with the role provided in the job description. 
 Highlight the strengths and weaknesses of the applicant in relation to the specified job requirements.
 """
-
+## prompt for submit button 2
 input_prompt2 ="""You are an advanced AI-powered resume parser and ATS (Applicant Tracking System) with expertise in analyzing resumes and matching them to job descriptions. Your task is to extract and evaluate key details from a given resume and compare them with a provided job description.
 
 ### **Instructions:**
@@ -111,6 +114,7 @@ Leave blank if any information is not found
 
 """
 
+## prompt for submit button 3
 input_prompt3 = """You are an skilled ATS (Applicant Tracking System) scanner with a deep understanding of technologies like Data science, Fullstack web development,
 Big Data engineering, DevOps, Data Analyst, Generative AI and deep ATS functionality, 
 your task is to evaluate the resume against the provided job description. give me the percentage of match if the resume matches
