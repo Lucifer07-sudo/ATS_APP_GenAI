@@ -45,7 +45,7 @@ def input_pdf_setup(uploaded_file):
 
 #streamlit app
 
-st.set_page_config(page_title="ATS Resume EXpert")
+st.set_page_config(page_title="ATS Resume Expert")
 st.header("ATS Tracking System")
 #field for JD
 input_text = st.text_area("Job Description: ", key='input')
